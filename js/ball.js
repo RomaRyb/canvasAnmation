@@ -1,6 +1,8 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
+var ballRadius = 4;
+
 /* Ball constructor */
 var Ball = function () {
     this.x = 100;
@@ -21,7 +23,7 @@ var circle = function (x, y, radius, fillCircle) {
     }
 };
 Ball.prototype.draw = function () {
-    circle(this.x, this.y, 3, true);
+    circle(this.x, this.y, ballRadius, true);
 };
 
 /* ball move*/
@@ -33,10 +35,10 @@ Ball.prototype.move = function () {
 /* ball reflect */
 
 Ball.prototype.checkCollision = function () {
-    if (this.x < 0 || this.x > 200) {
+    if (this.x - ballRadius < 0 || this.x + ballRadius > 200) {
         this.xSpeed = -this.xSpeed; 
     }
-    if (this.y < 0 || this.y > 200) {
+    if (this.y - ballRadius < 0 || this.y + ballRadius > 200) {
         this.ySpeed = -this.ySpeed;
     }
 };
