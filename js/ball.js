@@ -14,7 +14,7 @@ var Ball = function () {
     this.xSpeed = (Math.random() * 6 - 3);
     this.ySpeed = (Math.random() * 6 - 3);
 
-    var ballColors = ["black", "blue", "orange", "gold", "violet", "red"];
+    var ballColors = ["black", "blue", "orange", "gold", "violet", "red", "green", "brown", "grey", "yellow"];
     this.randomColor = pickRandomBallColor(ballColors);
 };
 
@@ -57,15 +57,20 @@ Ball.prototype.checkCollision = function () {
 };
 
 /* ball animation */
-var ball = new Ball();
+var balls = [];
+for (var i = 0; i < 100; i++){
+    balls[i] = new Ball;
+}
+//var ball = new Ball();
 
 setInterval(function () {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ball.draw();
-    ball.move();
-    ball.checkCollision();
-
+    for (var i = 0; i < balls.length; i++) {
+        balls[i].draw();
+        balls[i].move();
+        balls[i].checkCollision();
+    }
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
 }, 30);
 
