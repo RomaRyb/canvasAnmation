@@ -1,12 +1,15 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
+var width = canvas.width;
+var height = canvas.height;
 var ballRadius = 4;
+ctx.fillStyle = "red";
 
 /* Ball constructor */
 var Ball = function () {
-    this.x = 100;
-    this.y = 100;
+    this.x = canvas.width / 2;
+    this.y = canvas.height / 2;
 
     this.xSpeed = -2;
     this.ySpeed = 3;
@@ -35,10 +38,10 @@ Ball.prototype.move = function () {
 /* ball reflect */
 
 Ball.prototype.checkCollision = function () {
-    if (this.x - ballRadius < 0 || this.x + ballRadius > 200) {
+    if (this.x - ballRadius < 0 || this.x + ballRadius > canvas.width) {
         this.xSpeed = -this.xSpeed; 
     }
-    if (this.y - ballRadius < 0 || this.y + ballRadius > 200) {
+    if (this.y - ballRadius < 0 || this.y + ballRadius > canvas.height) {
         this.ySpeed = -this.ySpeed;
     }
 };
@@ -47,13 +50,13 @@ Ball.prototype.checkCollision = function () {
 var ball = new Ball();
 
 setInterval(function () {
-    ctx.clearRect(0, 0, 200, 200);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     ball.draw();
     ball.move();
     ball.checkCollision();
 
-    ctx.strokeRect(0, 0, 200, 200);
+    ctx.strokeRect(0, 0, canvas.width, canvas.height);
 }, 30);
 
 
