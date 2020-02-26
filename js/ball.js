@@ -4,16 +4,24 @@ var ctx = canvas.getContext("2d");
 var width = canvas.width;
 var height = canvas.height;
 var ballRadius = 4;
-ctx.fillStyle = "red";
+
 
 /* Ball constructor */
 var Ball = function () {
     this.x = canvas.width / 2;
     this.y = canvas.height / 2;
 
-    this.xSpeed = (Math.random() * 5) - 5;
-    this.ySpeed = (Math.random() * 5) - 5;
+    this.xSpeed = (Math.random() * 6 - 3);
+    this.ySpeed = (Math.random() * 6 - 3);
+
+    var ballColors = ["black", "blue", "orange", "gold", "violet", "red"];
+    this.randomColor = pickRandomBallColor(ballColors);
 };
+
+var pickRandomBallColor = function(colorsName) {
+    return colorsName[Math.floor(Math.random() * colorsName.length)];
+};
+
 
 /* ball draw*/
 var circle = function (x, y, radius, fillCircle) {
@@ -25,7 +33,9 @@ var circle = function (x, y, radius, fillCircle) {
         ctx.stroke();
     }
 };
+
 Ball.prototype.draw = function () {
+    ctx.fillStyle = this.randomColor;
     circle(this.x, this.y, ballRadius, true);
 };
 
