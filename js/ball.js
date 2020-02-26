@@ -11,8 +11,8 @@ var Ball = function () {
     this.x = canvas.width / 2;
     this.y = canvas.height / 2;
 
-    this.xSpeed = -2;
-    this.ySpeed = 3;
+    this.xSpeed = (Math.random() * 5) - 5;
+    this.ySpeed = (Math.random() * 5) - 5;
 };
 
 /* ball draw*/
